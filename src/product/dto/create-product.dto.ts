@@ -1,4 +1,4 @@
 export class CreateProductDto {
-    nome: string
-    preco: number
+  nome: string;
+  preco: number;
 }
