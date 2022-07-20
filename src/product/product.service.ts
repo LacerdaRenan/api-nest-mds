@@ -3,12 +3,11 @@ import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 import repositorio from './product.repo'
 import { Product } from './entities/product.entity';
-
 @Injectable()
 export class ProductService {
   create(createProductDto: CreateProductDto): Product {
 
-    let id = repositorio.idAvailable++;
+    let id = repositorio.newId();
 
     let newProduct = {
       id: id,

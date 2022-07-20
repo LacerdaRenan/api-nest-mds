@@ -1,8 +1,10 @@
 import {Product} from './entities/product.entity'
+class database {
+    private idAvailable: number = 1;
+    public produtosCadastrados: Product[] = []
+    public newId(): number {
+        return this.idAvailable++;
+    }
+}
 
-
-
-let idAvailable: number = 1;
-let produtosCadastrados: Product[] = []
-
-export default {produtosCadastrados, idAvailable}
+export default new database();
