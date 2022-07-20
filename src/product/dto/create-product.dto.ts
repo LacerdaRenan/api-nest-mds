@@ -1,1 +1,4 @@
-export class CreateProductDto {}
+export class CreateProductDto {
+    nome: string
+    preco: number
+}
