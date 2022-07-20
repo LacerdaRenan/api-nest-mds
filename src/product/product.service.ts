@@ -33,19 +33,12 @@ export class ProductService {
     return `This action updates a #${id} product`;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} product`;
-  }
-
-  private generateId(totalSize: number): number {
-    return totalSize;
-  }
-
-  private mapToProduct(product: Product){
-    return {
-      id: product.id,
-      nome: product.nome,
-      preco: product.preco
+  remove(id: number): void {
+    if(this.findOne(id)){
+      let newProducts = repositorio.produtosCadastrados.filter(p=>p.id != id);
+      repositorio.produtosCadastrados = newProducts;
+      return
     }
+    throw new BadRequestException('not-found');
   }
 }
