@@ -9,6 +9,8 @@ import {
 } from '@nestjs/common';
 import { ProductService } from './product.service';
 import { CreateProductDto } from './dto/create-product.dto';
+import { UpdateProductDto } from './dto/update-product.dto';
+import { Estoque } from './entities/estoque-entity';
 
 @Controller('product')
 export class ProductController {
@@ -29,11 +31,16 @@ export class ProductController {
     return this.productService.findOne(+id);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() ProductDto: CreateProductDto) {
-    return this.productService.update(+id, ProductDto);
+  @Get('/complete/:id')
+  findProduct(@Param('id') id: string) {
+    return this.productService.findProductComplete(+id);
   }
 
+  @Patch(':id')
+  update(@Param('id') id: string, @Body() ProductDto: UpdateProductDto) {
+    return this.productService.update(+id, ProductDto);
+  }
+  
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.productService.remove(+id);
